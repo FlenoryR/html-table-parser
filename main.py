@@ -19,8 +19,7 @@ def table_scraping():
     return make_response(
         jsonify(
             {
-                'output': output.getvalue(),
-                'html': dataFrame.to_html()
+                'output': output.getvalue()
             }
         ),
         200
