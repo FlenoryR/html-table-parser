@@ -13,12 +13,14 @@ def table_scraping():
     output = io.StringIO()
     data = json.loads(request.data)
 
-    pd.read_html(data['data'])[0].to_csv(output)
+    dataFrame = pd.read_html(data['data'])[0]
+    dataFrame.to_csv(output)
 
     return make_response(
         jsonify(
             {
-                'output': output.getvalue()
+                'output': output.getvalue(),
+                'html': dataFrame.to_html()
             }
         ),
         200
